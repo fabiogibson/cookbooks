@@ -1,0 +1,14 @@
+server { 
+	listen 80;
+
+	location = /favicon.ico { access_log off; log_not_found off; }
+
+	location /static/ {
+		root /home/jenkins/<%=@web_app%>/static;
+	}
+	
+	location / {
+	    include proxy_params;
+	    proxy_pass http://unix:/tmp/<%=@web_app%>.sock;
+	}
+}

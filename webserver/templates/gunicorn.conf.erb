@@ -1,0 +1,11 @@
+description "Gunicorn application server handling web site"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+setuid <%=@web_app%>
+setgid httpusers
+chdir /home/jenkins/<%=@web_app%>
+
+exec /home/jenkins/.virtualenvs/<%=@web_app%>/bin/gunicorn --workers 3 --bind unix:/tmp/<%=@web_app%>.sock <%=@web_app%>.wsgi:application

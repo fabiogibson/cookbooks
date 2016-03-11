@@ -1,0 +1,5 @@
+forge "http://forge.puppetlabs.com"
+
+mod "jfryman-nginx"
+mod "stankevich-python"
+mod "phinze/sudoers"
