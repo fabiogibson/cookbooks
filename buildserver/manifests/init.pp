@@ -16,22 +16,13 @@ class buildserver {
         },
     }
 
-    $plugins = [
-        'credentials',
-        'ssh-credentials',
-        'git-client',
-        'mailer',
-        'promoted-builds',
-        'matrix-project',
-        'token-macro',
-        'scm-api',
-        'ws-cleanup',
-        'parameterized-trigger',
-        'copyartifact',
-        'git',
-        'publish-over-ssh',
-        'backup'
-    ]
+    $plugins = []
 
     jenkins::plugin { $plugins: }
+
+    class { 'docker':
+        docker_users    => ['fgibson'],
+ 	    tcp_bind        => ['tcp://0.0.0.0:2375'],
+        socket_bind     => 'unix:///var/run/docker.sock',
+    }
 }

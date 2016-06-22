@@ -1,4 +1,4 @@
 forge "http://forge.puppetlabs.com"
 
 mod "rtyler-jenkins"
-
+mod "garethr-docker"
